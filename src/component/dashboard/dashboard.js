@@ -8,17 +8,15 @@ import DeleteExpenses from '../delete-expenses/delete-expenses';
 
 class Dashboard extends React.Component {
   render() {
-    console.log(this.props);
     return (
             <div>
                 <CategoryForm onComplete={this.props.categoryCreate}/>
                 <div> { this.props.categories.map(currentCategory => <section
                     key={currentCategory.id}
                     className="allExpenses">
-                    <p><b>Expense Title: </b><br/>{currentCategory.expenseTitle}</p>
-                    <p><b>amount: </b><br/>{currentCategory.expenseAmount}</p>
+                    <p>Expense: {currentCategory.expenseName}      Amount: {currentCategory.expenseAmount} <DeleteExpenses section={currentCategory} onComplete={this.props.categoryDelete}/></p>
                     <UpdateExpenses section={currentCategory} onComplete={this.props.categoryUpdate}/>
-                    <DeleteExpenses section={currentCategory} onComplete={this.props.categoryDelete}/>
+
                 </section>)}
                 </div>
             </div>

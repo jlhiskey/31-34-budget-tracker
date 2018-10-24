@@ -22,6 +22,7 @@ class UpdateExpenses extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.onComplete(this.state);
+        this.setState(emptyState);
     };
 
     render() {
