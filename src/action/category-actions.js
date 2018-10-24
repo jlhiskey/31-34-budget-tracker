@@ -1,9 +1,9 @@
-export const create = ({ expenseTitle, expenseAmount }) => {
+export const create = ({ expenseName, expenseAmount }) => {
   return {
     type: 'CATEGORY_CREATE',
     payload: {
       id: Math.random(),
-      expenseTitle,
+      expenseName,
       expenseAmount,
       createdOn: new Date(),
     },
