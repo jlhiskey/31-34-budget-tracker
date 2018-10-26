@@ -27,7 +27,8 @@ class Item extends React.Component {
         const editingJSX = <ItemForm item={ item } onComplete={ this.handleUpdateItemAndHideForm } /> ;
         const renderJSX = this.state.editing ? editingJSX :
             <React.Fragment>
-                { item.expenseName }
+                { item.expenseName } : $
+                { item.expenseAmount }
                 <button onClick={() => itemRemove(item)}> X </button>
             </React.Fragment> ;
 
