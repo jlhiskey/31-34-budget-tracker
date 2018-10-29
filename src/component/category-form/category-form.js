@@ -1,58 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const emptyState = {
-    expenseName: '',
-    expenseAmount: 0,
+const defaultState = {
+    title: '',
 };
 
+
 class CategoryForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = this.props.category || emptyState;
-  }
+    constructor(props) {
+        super(props);
+        this.state = this.props.category || defaultState;
+    }
+
     handleChange = (event) => {
-        let { name, value } = event.target;
-        if (name === 'expenseAmount' ) {
-            value = Number(value);
-        }
-        this.setState({[name]: value});
+        const { value } = event.target;
+        this.setState({ title: value });
     };
 
-
     handleSubmit = (event) => {
-    event.preventDefault();
-    this.props.onComplete(this.state);
-    this.setState(emptyState);
-  };
+        event.preventDefault();
+        this.props.onComplete(this.state);
+        this.setState(defaultState);
+    };
 
     render() {
         const buttonText = this.props.category ? 'Update' : 'Create';
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form
+                onSubmit={this.handleSubmit}
+                className='category-form'>
+
                 <input
-                    type="text"
-                    name="expenseName"
-                    placeholder="title"
-                    value={this.state.expenseName}
+                    type='text'
+                    name='title'
+                    placeholder='Category Name'
+                    value={this.state.title}
                     onChange={this.handleChange}
                 />
-                <input
-                    type="number"
-                    name="expenseAmount"
-                    placeholder="0"
-                    value={this.state.expenseAmount}
-                    onChange={this.handleChange}
-                />
-                <button type="submit">{buttonText} Expense</button>
+                <button type='submit'>{buttonText}</button>
+
             </form>
         );
     }
 }
 
 CategoryForm.propTypes = {
-  category: PropTypes.object,
-  onComplete : PropTypes.func,
+    onComplete: PropTypes.func,
+    category: PropTypes.object,
 };
 
 export default CategoryForm;
